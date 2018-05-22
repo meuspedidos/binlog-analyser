@@ -1,2 +1,2 @@
 bottle==0.12.10
-simplejson==3.13.2
+simplejson==3.15.0

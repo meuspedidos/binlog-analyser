@@ -23,7 +23,7 @@ setup(
     include_package_data=True,
     install_requires=[
         'bottle==0.12.10',
-        'simplejson==3.13.2'
+        'simplejson==3.15.0'
     ],
     entry_points={
         'console_scripts': ['mysql-binlog-explorer=binlogexplorer.webui:main'],
