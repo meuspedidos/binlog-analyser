@@ -20,6 +20,7 @@ steps:
       pip install virtualenv
       pip install virtualenvwrapper
       source /usr/local/bin/virtualenvwrapper.sh
+      mkvirtualenv binlog-analyser
 
       echo "~~~ install requirements"
       pip install --upgrade pip setuptools wheel
