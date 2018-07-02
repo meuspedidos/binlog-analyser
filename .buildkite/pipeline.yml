@@ -17,8 +17,8 @@ steps:
       echo 'odus' | sudo -S rm -rf /tmp/pip_build_root/*
       echo 'odus' | sudo -S pip2 install -r requirements.txt
 
-      echo '~~~ update pip2'
-      python -m pip2 install --upgrade pip2 setuptools wheel
+      echo '~~~ update pip'
+      python -m pip2 install --upgrade pip setuptools wheel
       hash -r pip2
       hash -d pip2
 
@@ -44,8 +44,8 @@ steps:
       echo 'odus' | sudo -S rm -rf /tmp/pip_build_root/*
       echo 'odus' | sudo -S pip2 install -r requirements_ci.txt
 
-      echo '~~~ update pip2'
-      python -m pip2 install --upgrade pip2 setuptools wheel
+      echo '~~~ update pip'
+      python -m pip2 install --upgrade pip setuptools wheel
 
       echo "~~~ cleaning"
       rm -rf dist
