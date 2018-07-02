@@ -26,6 +26,7 @@ steps:
 
       echo "~~~ testing dist"
       version=$(cat binlogexplorer/version)
+      pip --version
       pip uninstall mysql-binlog-explorer -y || true
       pip install dist/mysql-binlog-explorer-${version}.tar.gz --no-cache-dir
       mysql-binlog-explorer -h
