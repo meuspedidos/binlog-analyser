@@ -1,9 +1,9 @@
 steps:
 
   - command: |-
-      echo "~~~ pip install"
+      echo "~~~ pip2 install"
       echo 'odus' | sudo -S rm -rf /tmp/pip_build_root/*
-      echo 'odus' | sudo -S pip install -r requirements.txt
+      echo 'odus' | sudo -S pip2 install -r requirements.txt
 
       echo "~~~ test app"
       python -m unittest discover tests
@@ -13,35 +13,25 @@ steps:
       - type=native
 
   - command: |-
-      echo "~~~ clear cache"
+      echo "~~~ pip2 install"
       echo 'odus' | sudo -S rm -rf /tmp/pip_build_root/*
+      echo 'odus' | sudo -S pip2 install -r requirements.txt
 
-      echo '~~~ update pip'
-      pip install virtualenv
-      pip install virtualenvwrapper
-      source /usr/local/bin/virtualenvwrapper.sh
-      mkvirtualenv binlog-analyser
-
-      echo "~~~ install requirements"
-      pip install --upgrade pip setuptools wheel
+      echo '~~~ update pip2'
+      python -m pip2 install --upgrade pip2 setuptools wheel
+      hash -r pip2
+      hash -d pip2
 
       echo "~~~ building dist"
-      echo 'odus' | sudo -S pip install -r requirements.txt
       rm -rf dist/*
       python setup.py sdist
 
       echo "~~~ testing dist"
-      echo '1'
       version=$(cat binlogexplorer/version)
-      echo '2'
-      pip --version
-      echo '3'
-      pip uninstall mysql-binlog-explorer -y || true
-      echo '4'
-      pip install dist/mysql-binlog-explorer-${version}.tar.gz --no-cache-dir
-      echo '5'
+      pip2 --version
+      pip2 uninstall mysql-binlog-explorer -y || true
+      pip2 install dist/mysql-binlog-explorer-${version}.tar.gz --no-cache-dir
       mysql-binlog-explorer -h
-      echo '6'
 
     label: package distribution test
     agents:
@@ -50,12 +40,12 @@ steps:
   - wait
 
   - command: |-
-      echo "~~~ pip install"
+      echo "~~~ pip2 install"
       echo 'odus' | sudo -S rm -rf /tmp/pip_build_root/*
-      echo 'odus' | sudo -S pip install -r requirements_ci.txt
+      echo 'odus' | sudo -S pip2 install -r requirements_ci.txt
 
-      echo '~~~ update pip'
-      python -m pip install --upgrade pip setuptools wheel
+      echo '~~~ update pip2'
+      python -m pip2 install --upgrade pip2 setuptools wheel
 
       echo "~~~ cleaning"
       rm -rf dist
