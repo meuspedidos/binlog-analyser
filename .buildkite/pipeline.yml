@@ -25,8 +25,8 @@ steps:
       version=$(cat binlogexplorer/version)
       whoami
       python --version
-      pip uninstall mysql-binlog-explorer -y || true
-      pip install dist/mysql-binlog-explorer-${version}.tar.gz --no-cache-dir
+      echo 'odus' | sudo -S pip uninstall mysql-binlog-explorer -y || true
+      echo 'odus' | sudo -S pip install dist/mysql-binlog-explorer-${version}.tar.gz --no-cache-dir
       mysql-binlog-explorer -h
 
     label: package distribution test
