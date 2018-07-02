@@ -1,11 +1,15 @@
 from setuptools import setup
-import os
+from os.path import join as path
 
-with open(os.path.join('binlogexplorer', 'README.md')) as markdown_content:
-    readme_text = markdown_content.read()
+readme_text, version_text = '', ''
 
-with open(os.path.join('binlogexplorer', 'version')) as version_content:
-    version_text = version_content.read().strip()
+try:
+    with open(path('README.md')) as markdown_content:
+        readme_text = markdown_content.read()
+    with open(path('binlogexplorer', 'version')) as version_content:
+        version_text = version_content.read().strip()
+except IOError:
+    pass
 
 setup(
     name='mysql-binlog-explorer',
