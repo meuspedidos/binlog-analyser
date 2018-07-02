@@ -1,7 +1,7 @@
 from setuptools import setup
 import os
 
-with open('README.md') as markdown_content:
+with open(os.path.join('binlogexplorer', 'README.md')) as markdown_content:
     readme_text = markdown_content.read()
 
 with open(os.path.join('binlogexplorer', 'version')) as version_content:
