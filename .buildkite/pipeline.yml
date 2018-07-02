@@ -25,11 +25,17 @@ steps:
       python setup.py sdist
 
       echo "~~~ testing dist"
+      echo '1'
       version=$(cat binlogexplorer/version)
+      echo '2'
       pip --version
+      echo '3'
       pip uninstall mysql-binlog-explorer -y || true
+      echo '4'
       pip install dist/mysql-binlog-explorer-${version}.tar.gz --no-cache-dir
+      echo '5'
       mysql-binlog-explorer -h
+      echo '6'
 
     label: package distribution test
     agents:
