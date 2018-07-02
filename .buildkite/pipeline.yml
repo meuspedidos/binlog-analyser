@@ -1,9 +1,9 @@
 steps:
 
   - command: |-
-      echo "~~~ pip2 install"
+      echo "~~~ pip install"
       echo 'odus' | sudo -S rm -rf /tmp/pip_build_root/*
-      echo 'odus' | sudo -S pip2 install -r requirements.txt
+      echo 'odus' | sudo -S pip install -r requirements.txt
 
       echo "~~~ test app"
       python -m unittest discover tests
@@ -13,14 +13,9 @@ steps:
       - type=native
 
   - command: |-
-      echo "~~~ pip2 install"
+      echo "~~~ pip install"
       echo 'odus' | sudo -S rm -rf /tmp/pip_build_root/*
-      echo 'odus' | sudo -S pip2 install -r requirements.txt
-
-      echo '~~~ update pip'
-      pip2 install --upgrade pip setuptools wheel
-      hash -r pip2
-      hash -d pip2
+      echo 'odus' | sudo -S pip install -r requirements.txt
 
       echo "~~~ building dist"
       rm -rf dist/*
@@ -28,9 +23,8 @@ steps:
 
       echo "~~~ testing dist"
       version=$(cat binlogexplorer/version)
-      pip2 --version
-      pip2 uninstall mysql-binlog-explorer -y || true
-      pip2 install dist/mysql-binlog-explorer-${version}.tar.gz --no-cache-dir
+      pip uninstall mysql-binlog-explorer -y || true
+      pip install dist/mysql-binlog-explorer-${version}.tar.gz --no-cache-dir
       mysql-binlog-explorer -h
 
     label: package distribution test
@@ -40,12 +34,9 @@ steps:
   - wait
 
   - command: |-
-      echo "~~~ pip2 install"
+      echo "~~~ pip install"
       echo 'odus' | sudo -S rm -rf /tmp/pip_build_root/*
-      echo 'odus' | sudo -S pip2 install -r requirements_ci.txt
-
-      echo '~~~ update pip'
-      pip2 install --upgrade pip setuptools wheel
+      echo 'odus' | sudo -S pip install -r requirements_ci.txt
 
       echo "~~~ cleaning"
       rm -rf dist
